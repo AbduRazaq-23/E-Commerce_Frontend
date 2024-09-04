@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoginMutation } from "../app/api/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,10 @@ const SignIn = () => {
 
   const handleLogin = async () => {
     try {
-      const userData = await login({ email, password }).unwrap();
+      const userData = await login(
+        { email, password },
+        { credentials: "include" }
+      ).unwrap();
       const { data } = userData;
       console.log("User logged in:", data?.isAdmin);
       toast.success("login successfully");
