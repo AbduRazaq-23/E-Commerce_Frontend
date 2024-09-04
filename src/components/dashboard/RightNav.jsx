@@ -7,7 +7,7 @@ const RightNav = () => {
       <div className=" h-full flex justify-evenly items-center">
         <div>
           <input
-            className="p-1 overflow-hidden rounded-l-lg w-80"
+            className="p-1 overflow-hidden rounded-l-lg w-80 focus:outline-none"
             type="text"
             placeholder="search..."
           />
