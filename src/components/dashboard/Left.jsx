@@ -1,6 +1,7 @@
 import React from "react";
 import { FaHome, FaProductHunt } from "react-icons/fa";
 import { BiSolidCategoryAlt } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Left = () => {
   return (
@@ -17,9 +18,11 @@ const Left = () => {
       </div>
       <div>
         <ul className="flex flex-col gap-5 text-gray-200 mt-10 text-sm">
-          <li className="flex items-center gap-4">
-            <FaHome size={20} /> Home
-          </li>
+          <Link to={"/"}>
+            <li className="flex items-center gap-4">
+              <FaHome size={20} /> Home
+            </li>
+          </Link>
           <li className="flex items-center gap-4">
             <FaProductHunt size={20} /> Products
           </li>

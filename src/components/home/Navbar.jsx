@@ -24,6 +24,16 @@ const Navbar = () => {
         </div>
 
         <ul className="hidden  md:flex gap-3 items-center">
+          <Link to={"/signup"}>
+            <button className="border rounded-lg px-1 hover:bg-[#F9DBBA] hover:text-gray-700">
+              signup
+            </button>
+          </Link>
+          <Link to={"/signin"}>
+            <button className="border rounded-lg px-1 hover:bg-[#F9DBBA] hover:text-gray-700">
+              signin
+            </button>
+          </Link>
           <FaCartPlus size={20} />
           <button className="border rounded-lg px-1 hover:bg-[#F9DBBA] hover:text-gray-700">
             logout

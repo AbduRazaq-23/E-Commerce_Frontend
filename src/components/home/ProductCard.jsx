@@ -4,9 +4,9 @@ import { FaCartPlus } from "react-icons/fa";
 const ProductCard = () => {
   return (
     <div className="w-full h-90 bg-gray-100 rounded-lg  ">
-      <div className="w-full h-full flex flex-col gap-1  rounded-lg ">
+      <div className="w-full h-full flex flex-col gap-1   ">
         <img
-          className="w-full h-72 overflow-hidden"
+          className="w-full h-72 rounded-t-lg"
           src="https://cdn.pixabay.com/photo/2014/10/31/07/05/young-girl-510441_640.jpg"
           alt=""
         />
