@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoginMutation } from "../app/api/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -58,6 +59,14 @@ const SignIn = () => {
                 {error?.data?.message || "Failed to login"}
               </p>
             )}
+            <p className="text-sm text-center">
+              if don't have an account{" "}
+              <Link to={"/signup"}>
+                <span className="text-white underline hover:text-gray-200">
+                  SignUp
+                </span>
+              </Link>
+            </p>
           </div>
         </div>
       </div>
