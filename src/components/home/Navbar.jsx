@@ -20,6 +20,7 @@ const Navbar = () => {
     try {
       await logout({ credentials: "include" }).unwrap();
       toast.success("logout successfully");
+      window.location.reload();
       Navigate("/");
     } catch (error) {
       toast.error(error);
