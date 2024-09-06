@@ -18,8 +18,8 @@ const Navbar = () => {
   useEffect(() => {
     const token = Cookies.get("token");
     setIsToken(token);
-    setUser(data?.data);
-  }, []);
+    data && setUser(data.data);
+  }, [data]);
 
   const logOutHandler = async () => {
     try {

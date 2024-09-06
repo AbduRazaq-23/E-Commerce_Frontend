@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 
 const RightNav = () => {
   const [cookie, setCookie] = useState();
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const Navigate = useNavigate();
   const [logout] = useLogoutMutation();
   const { data } = useGetCurrentProfileQuery();
@@ -18,10 +18,9 @@ const RightNav = () => {
   // get cookie
   useEffect(() => {
     const token = Cookies.get("token");
-    setCookie(token);
-
-    setUser(data?.data);
-  }, []);
+    token && setCookie(token);
+    data && setUser(data.data);
+  }, [data]);
 
   // handleLogOut
   const handleLogOut = async () => {
@@ -59,6 +58,7 @@ const RightNav = () => {
               logout
             </button>
           )}
+
           <img className="w-8 rounded-full" src={user?.avatar} alt="avatar" />
         </ul>
       </div>
