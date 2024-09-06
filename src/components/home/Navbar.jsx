@@ -35,11 +35,16 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 w-full h-16 bg-[#1F316F]">
       <div className="h-full w-full px-3 flex items-center justify-between text-gray-200 text-sm">
-        <img
-          className="w-8"
-          src="https://cdn.pixabay.com/photo/2016/09/30/17/29/shopping-1705800_1280.png"
-          alt="image"
-        />
+        <div className="flex space-x-1">
+          <img
+            className="w-8"
+            src="https://cdn.pixabay.com/photo/2016/09/30/17/29/shopping-1705800_1280.png"
+            alt="image"
+          />
+          <p className="text-2xl font-bold">
+            E.<span className="text-red-500">com</span>
+          </p>
+        </div>
 
         <div className="hidden md:block border border-gray-200 rounded-lg">
           <input
@@ -76,7 +81,7 @@ const Navbar = () => {
                 logout
               </button>
               <img
-                className="w-8 rounded-full"
+                className="w-8 h-8 rounded-full bg-cover"
                 src={user?.avatar}
                 alt="avatar"
               />

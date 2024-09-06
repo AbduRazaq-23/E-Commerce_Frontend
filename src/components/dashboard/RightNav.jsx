@@ -59,7 +59,11 @@ const RightNav = () => {
             </button>
           )}
 
-          <img className="w-8 rounded-full" src={user?.avatar} alt="avatar" />
+          <img
+            className="w-8 h-8 bg-cover rounded-full"
+            src={user?.avatar}
+            alt="avatar"
+          />
         </ul>
       </div>
     </div>
