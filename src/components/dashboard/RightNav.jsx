@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
-import { useLogoutMutation } from "../../app/api/userSlice";
+import {
+  useLogoutMutation,
+  useGetCurrentProfileQuery,
+} from "../../app/api/userSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const RightNav = () => {
   const [cookie, setCookie] = useState();
+  const [user, setUser] = useState();
+  const Navigate = useNavigate();
+  const [logout] = useLogoutMutation();
+  const { data } = useGetCurrentProfileQuery();
 
+  // get cookie
   useEffect(() => {
     const token = Cookies.get("token");
     setCookie(token);
+
+    setUser(data?.data);
   }, []);
 
-  const Navigate = useNavigate();
-  const [logout] = useLogoutMutation();
-
+  // handleLogOut
   const handleLogOut = async () => {
     try {
       await logout({ credential: "include" }).unwrap();
@@ -51,11 +59,7 @@ const RightNav = () => {
               logout
             </button>
           )}
-          <img
-            className="w-8 rounded-full"
-            src="https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_960_720.png"
-            alt="logo"
-          />
+          <img className="w-8 rounded-full" src={user?.avatar} alt="avatar" />
         </ul>
       </div>
     </div>

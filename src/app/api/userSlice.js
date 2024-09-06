@@ -28,8 +28,21 @@ export const userSlice = apiSlice.injectEndpoints({
         credentials: "include",
       }),
     }),
+    // getCurrentProfile
+    getCurrentProfile: builder.query({
+      query: () => ({
+        url: `${USERS_URL}/getcurrentuser`,
+        credentials: "include",
+      }),
+      provideTags: ["User"],
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useLogoutMutation } =
-  userSlice;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useGetCurrentProfileQuery,
+} = userSlice;

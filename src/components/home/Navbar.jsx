@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
-import { useLogoutMutation } from "../../app/api/userSlice";
+import {
+  useLogoutMutation,
+  useGetCurrentProfileQuery,
+} from "../../app/api/userSlice";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 const Navbar = () => {
   const [isToken, setIsToken] = useState("");
+  const [user, setUser] = useState();
+  const Navigate = useNavigate();
+  const [logout] = useLogoutMutation();
+  const { data } = useGetCurrentProfileQuery();
+
   useEffect(() => {
     const token = Cookies.get("token");
     setIsToken(token);
+    setUser(data?.data);
   }, []);
-
-  const Navigate = useNavigate();
-
-  const [logout] = useLogoutMutation();
 
   const logOutHandler = async () => {
     try {
@@ -72,8 +77,8 @@ const Navbar = () => {
               </button>
               <img
                 className="w-8 rounded-full"
-                src="https://cdn.pixabay.com/photo/2016/09/30/17/29/shopping-1705800_1280.png"
-                alt="image"
+                src={user?.avatar}
+                alt="avatar"
               />
             </>
           )}
