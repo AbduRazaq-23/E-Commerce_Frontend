@@ -37,6 +37,42 @@ export const userSlice = apiSlice.injectEndpoints({
       provideTags: ["User"],
       keepUnusedDataFor: 5,
     }),
+    // getAllUsers
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `${USERS_URL}/getallusers`,
+        credentials: "include",
+      }),
+      provideTags: ["User"],
+      keepUnusedDataFor: 5,
+    }),
+    //update user details
+    updateDetails: builder.mutation({
+      query: (userId, data) => ({
+        url: `${USERS_URL}/updatedetails/${userId}`,
+        method: "PATCH",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+    //update avatar
+    updateAvatar: builder.mutation({
+      query: (userId, data) => ({
+        url: `${USERS_URL}/updateavatar/${userId}`,
+        method: "PATCH",
+        body: data,
+        credentials: "include",
+      }),
+    }),
+    //change password
+    changePassword: builder.mutation({
+      query: (userId, data) => ({
+        url: `${USERS_URL}/changePassword/${userId}`,
+        method: "POST",
+        body: data,
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -45,4 +81,8 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useGetCurrentProfileQuery,
+  useGetAllUsersQuery,
+  useUpdateDetailsMutation,
+  useUpdateAvatarMutation,
+  useChangePasswordMutation,
 } = userSlice;
