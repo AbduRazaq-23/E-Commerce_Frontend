@@ -13,7 +13,6 @@ const Products = () => {
       console.log(error);
     }
   }, [data]);
-  console.log(products);
 
   return (
     <div className="w-full rounded-lg bg-[#F9DBBA]">
