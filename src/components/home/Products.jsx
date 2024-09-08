@@ -28,7 +28,7 @@ const Products = () => {
               ))}
             </>
           ) : (
-            <p>loading...</p>
+            <p>server error...</p>
           )}
         </div>
       </div>
