@@ -1,22 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
+import { useGetProductQuery } from "../../app/api/products";
 
 const Products = () => {
+  const { data, error, isLoading } = useGetProductQuery();
+  const [products, setProducts] = useState();
+
+  useEffect(() => {
+    try {
+      data && setProducts(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [data]);
+  console.log(products);
+
   return (
-    <div className="w-full bg-[#F9DBBA]">
+    <div className="w-full rounded-lg bg-[#F9DBBA]">
       <div className="w-full pt-10">
         <h1 className="text-center text-3xl font-bold text-gray-700 underline ">
           Products
         </h1>
         <div className="p-10 grid md:grid-cols-4  gap-4 ">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          {Array.isArray(products) ? (
+            <>
+              {products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </>
+          ) : (
+            <p>loading...</p>
+          )}
         </div>
       </div>
     </div>

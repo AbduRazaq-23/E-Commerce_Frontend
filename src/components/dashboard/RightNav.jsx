@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaCartPlus } from "react-icons/fa";
+import { FaBell } from "react-icons/fa";
 import {
   useLogoutMutation,
   useGetCurrentProfileQuery,
@@ -36,7 +36,7 @@ const RightNav = () => {
   return (
     <div className="fixed top-0 w-full bg-[#0C1844] h-14 ">
       <div className=" h-full flex justify-evenly items-center">
-        <div>
+        <div className="hidden md:block">
           <input
             className="p-1 overflow-hidden rounded-l-lg w-80 focus:outline-none"
             type="text"
@@ -48,7 +48,7 @@ const RightNav = () => {
         </div>
         <ul className="flex items-center gap-4 mr-4 text-gray-200">
           <button>
-            <FaCartPlus size={20} />
+            <FaBell size={20} />
           </button>
           {cookie && (
             <button

@@ -10,8 +10,10 @@ const Home = () => {
     <div>
       <Navbar />
       <Carousel />
-      <Categories />
-      <Products />
+      <div className="flex flex-col gap-3 p-4">
+        <Categories />
+        <Products />
+      </div>
       <Footer />
     </div>
   );
