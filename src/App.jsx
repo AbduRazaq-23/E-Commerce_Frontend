@@ -4,6 +4,8 @@ import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn";
+import AddProducts from "./components/dashboard/AddProducts";
+import UpdateProducts from "./components/dashboard/UpdateProducts";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
 
         {/* admin route  */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/addProducts" element={<AddProducts />} />
+        <Route path="/dashboard/updateProducts" element={<UpdateProducts />} />
       </Routes>
     </BrowserRouter>
   );

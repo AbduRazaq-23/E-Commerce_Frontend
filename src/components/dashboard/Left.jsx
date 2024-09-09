@@ -23,9 +23,12 @@ const Left = () => {
               <FaHome size={20} /> Home
             </li>
           </Link>
-          <li className="flex items-center gap-4">
-            <FaProductHunt size={20} /> Products
-          </li>
+          <Link to={"/dashboard/addProducts"}>
+            <li className="flex items-center gap-4">
+              <FaProductHunt size={20} />
+              Add Products
+            </li>
+          </Link>
           <li className="flex items-center gap-4">
             <BiSolidCategoryAlt size={20} /> Category
           </li>

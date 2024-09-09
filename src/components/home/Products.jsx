@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { useGetProductQuery } from "../../app/api/products";
+import { useGetProductQuery } from "../../app/api/productsSlice";
 
 const Products = () => {
   const { data, error, isLoading } = useGetProductQuery();

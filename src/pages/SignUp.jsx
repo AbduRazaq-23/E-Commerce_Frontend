@@ -34,7 +34,6 @@ const SignUp = () => {
       const userData = await register(formData).unwrap();
 
       // Handle successful registration
-      console.log("User registered:", userData);
       toast.success("Registered successfully!");
 
       // Redirect to another page after successful signup
