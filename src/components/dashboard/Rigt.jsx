@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RightNav from "./RightNav";
 import { useGetAllUsersQuery } from "../../app/api/userSlice";
-import Products from "../home/Products";
+import GetProducts from "./GetProducts";
 
 const Rigt = () => {
   const { data, error, isLoading } = useGetAllUsersQuery({
@@ -87,7 +87,7 @@ const Rigt = () => {
             ""
           )}
         </div>
-        <Products />
+        <GetProducts />
       </div>
     </div>
   );
