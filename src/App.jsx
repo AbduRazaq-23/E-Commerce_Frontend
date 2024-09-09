@@ -18,7 +18,10 @@ function App() {
         {/* admin route  */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/addProducts" element={<AddProducts />} />
-        <Route path="/dashboard/updateProducts" element={<UpdateProducts />} />
+        <Route
+          path="/dashboard/updateProducts/:productId"
+          element={<UpdateProducts />}
+        />
       </Routes>
     </BrowserRouter>
   );
