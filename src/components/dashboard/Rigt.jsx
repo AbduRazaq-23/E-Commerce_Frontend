@@ -8,7 +8,7 @@ const Rigt = () => {
     credentials: "include",
   });
   const [users, setUsers] = useState();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     try {
