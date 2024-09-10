@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
+
 import {
   useLogoutMutation,
   useGetCurrentProfileQuery,
@@ -14,6 +16,7 @@ const Navbar = () => {
   const Navigate = useNavigate();
   const [logout] = useLogoutMutation();
   const { data } = useGetCurrentProfileQuery();
+  const [isShow, setIsShow] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -30,6 +33,11 @@ const Navbar = () => {
     } catch (error) {
       toast.error(error);
     }
+  };
+
+  // profile show and hide handler
+  const profile = () => {
+    setIsShow(!isShow);
   };
 
   return (
@@ -81,10 +89,38 @@ const Navbar = () => {
                 logout
               </button>
               <img
+                onClick={profile}
                 className="w-8 h-8 rounded-full bg-cover"
                 src={user?.avatar}
                 alt="avatar"
               />
+
+              {/* // profile popup */}
+              {isShow && (
+                <div className="fixed inset-0 flex justify-end items-baseline  bg-black bg-opacity-50 z-50">
+                  <div className="bg-[#1F316F]  p-6 rounded-bl-xl shadow-lg w-50 ">
+                    {/* Close button */}
+
+                    <FaXmark className="ml-auto mb-4" onClick={profile} />
+
+                    <h2 className="text-xl text-center font-bold ">
+                      Profile Details
+                    </h2>
+                    <div className=" w-full flex flex-col items-center gap-1 py-5">
+                      <p>
+                        <img
+                          className="w-16 h-16 rounded-full"
+                          src={user?.avatar}
+                          alt="avatar"
+                        />
+                      </p>
+                      <p>{user?.name}</p>
+                      <p>{user?.email}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* end of profile popup  */}
             </>
           )}
         </ul>
