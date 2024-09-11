@@ -48,19 +48,19 @@ export const userSlice = apiSlice.injectEndpoints({
     }),
     //update user details
     updateDetails: builder.mutation({
-      query: (userId, data) => ({
-        url: `${USERS_URL}/updatedetails/${userId}`,
+      query: (newName) => ({
+        url: `${USERS_URL}/updatedetails`,
         method: "PATCH",
-        body: data,
+        body: newName,
         credentials: "include",
       }),
     }),
     //update avatar
     updateAvatar: builder.mutation({
-      query: (userId, data) => ({
-        url: `${USERS_URL}/updateavatar/${userId}`,
+      query: (avatar) => ({
+        url: `${USERS_URL}/updateavatar`,
         method: "PATCH",
-        body: data,
+        body: avatar,
         credentials: "include",
       }),
     }),
