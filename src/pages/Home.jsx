@@ -7,7 +7,7 @@ import Footer from "../components/home/Footer";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-[#1A4870]">
       <Navbar />
       <Carousel />
       <div className="flex flex-col gap-3 p-4">

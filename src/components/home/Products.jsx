@@ -15,9 +15,9 @@ const Products = () => {
   }, [data]);
 
   return (
-    <div className="w-full rounded-lg bg-[#F9DBBA]">
+    <div className="w-full rounded-lg bg-[#0C1844]">
       <div className="w-full pt-10">
-        <h1 className="text-center text-3xl font-bold text-gray-700 underline ">
+        <h1 className="text-center text-3xl font-bold text-gray-200 underline ">
           Products
         </h1>
         <div className="p-10 grid md:grid-cols-4  gap-4 ">

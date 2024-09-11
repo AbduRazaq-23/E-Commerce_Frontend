@@ -3,7 +3,7 @@ import { FaCartPlus } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="w-full h-90 bg-gray-100 rounded-lg text-gray-700  ">
+    <div className="w-full h-90 bg-[#0C1844] border border-gray-500 rounded-lg text-gray-200  ">
       <div className="w-full h-full flex flex-col gap-1   ">
         <img
           className="w-full h-72 rounded-t-lg"

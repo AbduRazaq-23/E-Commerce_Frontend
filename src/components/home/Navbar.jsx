@@ -78,7 +78,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 w-full h-16 bg-[#1F316F]">
+    <div className="fixed top-0 w-full h-16 bg-[#0C1844]">
       <div className="h-full w-full px-3 flex items-center justify-between text-gray-200 text-sm">
         <div className="flex space-x-1">
           <img
@@ -93,7 +93,7 @@ const Navbar = () => {
 
         <div className="hidden md:block border border-gray-200 rounded-lg">
           <input
-            className="px-2  bg-[#1F316F] rounded-l-lg focus:outline-none"
+            className="px-2  bg-[#0C1844] rounded-l-lg focus:outline-none"
             type="text"
             placeholder="search"
           />
