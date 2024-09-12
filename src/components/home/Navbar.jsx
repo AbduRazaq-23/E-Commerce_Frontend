@@ -16,10 +16,12 @@ const Navbar = () => {
   const [user, setUser] = useState();
   const Navigate = useNavigate();
   const [isShow, setIsShow] = useState(false);
+
   const [avatar, setAvatar] = useState();
 
   const [name, setName] = useState(user?.name || "");
   const [inputName, setInputName] = useState(false);
+  const [updatedName, setUpdatedName] = useState("");
 
   const [logout] = useLogoutMutation();
   const { data } = useGetCurrentProfileQuery();
@@ -57,9 +59,8 @@ const Navbar = () => {
       const formData = new FormData();
       formData.append("avatar", avatar);
 
-      const res = await updateAvatar(formData);
-
-      toast.success(res?.data.data, { autoClose: 2000 });
+      const res = await updateAvatar({ formData });
+      toast.success(res?.data.data.message, { autoClose: 2000 });
     } catch (error) {
       console.log(error);
     }
@@ -72,6 +73,7 @@ const Navbar = () => {
   const changeName = async () => {
     try {
       const res = await updateDetails({ name });
+      setUpdatedName(res?.data.data.name);
     } catch (error) {
       console.log(error);
     }
@@ -164,7 +166,7 @@ const Navbar = () => {
                       {/*  name  */}
                       {!inputName ? (
                         <div className="flex gap-1">
-                          <p>{user?.name}</p>
+                          <p>{updatedName ? updatedName : user?.name}</p>
                           <FaPen
                             className="m-auto"
                             size={10}
