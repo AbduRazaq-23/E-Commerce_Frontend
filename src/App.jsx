@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
@@ -6,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import AddProducts from "./components/dashboard/AddProducts";
 import UpdateProducts from "./components/dashboard/UpdateProducts";
+import ProductDetails from "./components/home/productDetails";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/productdetails/:productId" element={<ProductDetails />} />
 
         {/* admin route  */}
         <Route path="/dashboard" element={<Dashboard />} />
