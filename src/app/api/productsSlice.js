@@ -64,13 +64,14 @@ const productSlice = apiSlice.injectEndpoints({
     }),
     //addComments
     addComments: builder.mutation({
-      query: (productId, data) => ({
+      query: ({ productId, data }) => ({
         url: `/products/comments/${productId}`,
         method: "POST",
         body: data,
         credentials: "include",
       }),
     }),
+
     //searchProducts
     searchProducts: builder.mutation({
       query: (keyword) => ({
