@@ -37,7 +37,7 @@ const Navbar = () => {
   const logOutHandler = async () => {
     try {
       await logout({ credentials: "include" }).unwrap();
-      toast.success("logout successfully");
+      toast.success("logout successfully", { autoClose: 2000 });
       window.location.reload();
       Navigate("/");
     } catch (error) {
