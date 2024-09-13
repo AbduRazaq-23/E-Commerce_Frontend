@@ -19,7 +19,7 @@ const SignIn = () => {
       ).unwrap();
       const { data } = userData;
       console.log("User logged in:", data?.isAdmin);
-      toast.success("login successfully");
+      toast.success("login successfully", { autoClose: 2000 });
 
       data?.isAdmin === true ? Navigate("/dashboard") : Navigate("/");
     } catch (err) {
