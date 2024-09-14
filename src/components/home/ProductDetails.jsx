@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaRegStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import {
   useGetProductByIdQuery,
@@ -6,6 +7,10 @@ import {
 } from "../../app/api/productsSlice";
 
 const ProductDetails = () => {
+  const [rating, setRating] = useState(0); // Current selected rating
+  const [hover, setHover] = useState(null);
+  console.log(rating);
+
   const { productId } = useParams();
   const { data } = useGetProductByIdQuery(productId);
   const [product, setProduct] = useState(null);
@@ -23,10 +28,11 @@ const ProductDetails = () => {
     }
   }, [data]);
 
+  // show or hide comment
   const ShowComments = () => {
     setShowComment(!showComment);
   };
-
+  // addComment
   const addComment = async () => {
     try {
       const commentData = {
@@ -47,21 +53,41 @@ const ProductDetails = () => {
       <div className="w-full h-[50%] md:w-[70%] m-auto  md:flex gap-6 text-gray-200 border border-[#262e52] rounded-lg overflow-hidden">
         <img className="h-80 w-full md:w-60 " src={product?.image} alt="img" />
         <ul>
-          <li>{product?.name}</li>
-          <li>{product?.description}</li>
-          <li>$ {product?.price}</li>
-          <li>h</li>
-          <li>23</li>
-          <li>5</li>
+          <li>name: {product?.name}</li>
+          <li>desc: {product?.description}</li>
+          <li>$: {product?.price}</li>
+          <li>brand: {product?.brand}</li>
+          <li>available: {product?.countInStock}</li>
+          <li>quantity: {product?.quantity}</li>
+
+          <ul className="flex gap-1 items-center">
+            {/* /////////////////////////////////// */}
+            <div className="flex">
+              {[...Array(5)].map((_, index) => {
+                const starRating = index + 1;
+                return (
+                  <button
+                    key={starRating}
+                    type="button"
+                    className={`text-3xl cursor-pointer ${
+                      starRating <= (hover || rating)
+                        ? "text-yellow-500"
+                        : "text-gray-300"
+                    }`}
+                    onClick={() => setRating(starRating)}
+                    onMouseEnter={() => setHover(starRating)}
+                    onMouseLeave={() => setHover(null)}
+                  >
+                    <FaRegStar />
+                  </button>
+                );
+              })}
+            </div>{" "}
+            {/* //////////////// */}
+            <li className="text-sm">rating: {product?.rating}</li>
+          </ul>
         </ul>
-        <ul>
-          <li>name</li>
-          <li>description</li>
-          <li>numRating</li>
-          <li>h</li>
-          <li>23</li>
-          <li>5</li>
-        </ul>
+        <button>orderNow</button>
       </div>
 
       {/* comments section  */}
@@ -83,8 +109,9 @@ const ProductDetails = () => {
         {/* show all comments  */}
         <div className="mx-5 border border-[#262e52] p-2 rounded-lg overflow-hidden ">
           <button className="underline mb-2" onClick={ShowComments}>
-            {!showComment ? "show more..." : "hide..."}{" "}
+            {!showComment ? "show more..." : "hide..."}
           </button>
+          <p className="text-sm">comments.{product?.numComments}</p>
           {showComment ? (
             <>
               {newComment
