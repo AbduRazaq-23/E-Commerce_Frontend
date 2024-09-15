@@ -55,7 +55,7 @@ const productSlice = apiSlice.injectEndpoints({
     }),
     //add product review
     addReviews: builder.mutation({
-      query: (productId, data) => ({
+      query: ({ productId, data }) => ({
         url: `/products/review/${productId}`,
         method: "POST",
         body: data,

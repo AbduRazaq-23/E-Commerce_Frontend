@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { FaRegStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import {
   useGetProductByIdQuery,
   useAddCommentsMutation,
+  useAddReviewsMutation,
 } from "../../app/api/productsSlice";
 
 const ProductDetails = () => {
-  const [rating, setRating] = useState(0); // Current selected rating
-  const [hover, setHover] = useState(null);
-  console.log(rating);
+  const [updatedRating, setupdatedRating] = useState();
+
+  const [addRatingNumber] = useAddReviewsMutation();
 
   const { productId } = useParams();
   const { data } = useGetProductByIdQuery(productId);
@@ -22,7 +24,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     try {
-      data && setProduct(data.data);
+      data && setProduct(data?.data);
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +50,20 @@ const ProductDetails = () => {
     }
   };
 
+  const addRating = async (value) => {
+    try {
+      const data = {
+        value,
+      };
+
+      const res = await addRatingNumber({ productId, data });
+      setupdatedRating(res?.data?.data?.rating);
+      toast.success(res?.data?.message, { autoClose: 2000 });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-[#0C1844]    p-2">
       <div className="w-full h-[50%] md:w-[70%] m-auto  md:flex gap-6 text-gray-200 border border-[#262e52] rounded-lg overflow-hidden">
@@ -60,32 +76,23 @@ const ProductDetails = () => {
           <li>available: {product?.countInStock}</li>
           <li>quantity: {product?.quantity}</li>
 
+          {/* /////////////////////////////////// */}
           <ul className="flex gap-1 items-center">
-            {/* /////////////////////////////////// */}
             <div className="flex">
-              {[...Array(5)].map((_, index) => {
-                const starRating = index + 1;
-                return (
-                  <button
-                    key={starRating}
-                    type="button"
-                    className={`text-3xl cursor-pointer ${
-                      starRating <= (hover || rating)
-                        ? "text-yellow-500"
-                        : "text-gray-300"
-                    }`}
-                    onClick={() => setRating(starRating)}
-                    onMouseEnter={() => setHover(starRating)}
-                    onMouseLeave={() => setHover(null)}
-                  >
-                    <FaRegStar />
-                  </button>
-                );
-              })}
-            </div>{" "}
-            {/* //////////////// */}
-            <li className="text-sm">rating: {product?.rating}</li>
+              <FaRegStar onClick={() => addRating(Number(1))} />
+              <FaRegStar onClick={() => addRating(Number(2))} />
+              <FaRegStar onClick={() => addRating(Number(3))} />
+              <FaRegStar onClick={() => addRating(Number(4))} />
+              <FaRegStar onClick={() => addRating(Number(5))} />
+            </div>
+            <li className="text-sm">
+              rating:{" "}
+              {updatedRating
+                ? updatedRating.toFixed(1)
+                : product?.rating.toFixed(1)}{" "}
+            </li>
           </ul>
+          {/* //////////////// */}
         </ul>
         <button>orderNow</button>
       </div>

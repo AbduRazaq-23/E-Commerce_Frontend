@@ -59,7 +59,7 @@ const Navbar = () => {
       const formData = new FormData();
       formData.append("avatar", avatar);
 
-      const res = await updateAvatar({ formData });
+      const res = await updateAvatar(formData);
       toast.success(res?.data.data.message, { autoClose: 2000 });
     } catch (error) {
       console.log(error);
