@@ -91,6 +91,7 @@ const ProductDetails = () => {
                 ? updatedRating.toFixed(1)
                 : product?.rating.toFixed(1)}{" "}
             </li>
+            <li className="text-sm">numRating: {product?.numReviews} </li>
           </ul>
           {/* //////////////// */}
         </ul>
