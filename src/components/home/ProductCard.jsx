@@ -1,8 +1,16 @@
 import React from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../app/api/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (product) => {
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className="w-full h-90 bg-[#0C1844] border border-gray-500 rounded-lg text-gray-200  ">
       <div className="w-full h-full flex flex-col gap-1   ">
@@ -21,7 +29,11 @@ const ProductCard = ({ product }) => {
             <p>rating: {product.rating.toFixed(1)}</p>
           </div>
           <div className="flex flex-col justify-between">
-            <FaCartPlus className="ml-auto" size={20} />
+            <FaCartPlus
+              onClick={() => addToCartHandler(product)}
+              className="ml-auto"
+              size={20}
+            />
             <Link to={`/productdetails/${product._id}`}>
               <button className="bg-blue-500 hover:bg-blue-600 rounded-md p-1 text-gray-200">
                 OrderNow
