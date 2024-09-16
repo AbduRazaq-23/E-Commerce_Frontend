@@ -6,6 +6,7 @@ import SignIn from "./pages/SignIn";
 import AddProducts from "./components/dashboard/AddProducts";
 import UpdateProducts from "./components/dashboard/UpdateProducts";
 import ProductDetails from "./components/home/productDetails";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/productdetails/:productId" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
 
         {/* admin route  */}
         <Route path="/dashboard" element={<Dashboard />} />

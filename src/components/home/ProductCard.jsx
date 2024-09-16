@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { addToCart, removeFromCart } from "../../app/api/cartSlice";
+import { addToCart } from "../../app/api/cartSlice";
 import { useDispatch } from "react-redux";
 
 const ProductCard = ({ product }) => {
@@ -9,10 +9,6 @@ const ProductCard = ({ product }) => {
 
   const addToCartHandler = (product) => {
     dispatch(addToCart(product));
-  };
-
-  const removeFromCarts = (id) => {
-    dispatch(removeFromCart(id));
   };
 
   return (
@@ -43,7 +39,6 @@ const ProductCard = ({ product }) => {
                 OrderNow
               </button>{" "}
             </Link>
-            <button onClick={() => removeFromCarts(product._id)}>remove</button>
           </div>
         </div>
       </div>

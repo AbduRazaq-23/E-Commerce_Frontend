@@ -11,7 +11,10 @@ import {
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
+import { useSelector } from "react-redux";
+
 const Navbar = () => {
+  const lengthOfCart = useSelector((state) => state.cart.cartItems);
   const [isToken, setIsToken] = useState("");
   const [user, setUser] = useState();
   const Navigate = useNavigate();
@@ -120,7 +123,19 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <FaCartPlus size={20} />
+              {/* cart  */}
+              <div className="relative">
+                <Link to={"/cart"}>
+                  {" "}
+                  <FaCartPlus size={22} className="hover:scale-110" />
+                </Link>
+                {lengthOfCart.length > 0 && (
+                  <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-3 h-3 flex items-center justify-center">
+                    {lengthOfCart.length}
+                  </span>
+                )}
+              </div>
+
               <button
                 onClick={logOutHandler}
                 className="border rounded-lg px-1 hover:bg-[#F9DBBA] hover:text-gray-700"
