@@ -29,7 +29,7 @@ const GetProducts = () => {
       const updatedProduct = await productDelete(id).unwrap();
 
       setProducts(updatedProduct.data);
-      toast.success("delete successfully");
+      toast.success("delete successfully", { autoClose: 2000 });
     } catch (error) {
       toast.error(error);
     }

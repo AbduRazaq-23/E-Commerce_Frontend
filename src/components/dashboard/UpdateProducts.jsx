@@ -59,7 +59,7 @@ const UpdateProducts = () => {
       }).unwrap();
 
       console.log("this is res updated", res);
-      toast.success(res.message);
+      toast.success(res.message, { autoClose: 2000 });
       Navigate("/dashboard");
     } catch (err) {
       console.error(`Failed to update product: ${err}`);
