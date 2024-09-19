@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/home/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../app/api/cartSlice";
+import { usePayMutation } from "../app/api/paymentSlice";
+import StripeCheckout from "react-stripe-checkout";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const cartItem = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
+
+  const [product, setProduct] = useState();
 
   const remove = (id) => dispatch(removeFromCart(id));
 
   const totalPrice = cartItem.reduce((acc, cItem) => {
     return acc + cItem.price;
   }, 0);
+
+  const [Payment] = usePayMutation();
+
+  const checkOut = async (token) => {
+    try {
+      const body = {
+        product: { name: "madu", price: totalPrice },
+        token,
+      };
+
+      const res = await Payment({ data: body }).unwrap();
+      toast.success(res?.message, { autoClose: 1000 });
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   return (
     <div>
@@ -49,9 +70,16 @@ const Cart = () => {
         {/* checkout  */}
         <div className="bg-[#3b446b] mt-16  m-auto rounded-md p-6 text-gray-200 space-y-6">
           <p>subTotal: ${totalPrice}</p>
-          <button className="w-full bg-[#0C1844] hover:scale-105 rounded-md px-2">
-            checkout
-          </button>
+          <StripeCheckout
+            name="Buy"
+            stripeKey={import.meta.env.VITE_STRIPE_KEY}
+            token={checkOut}
+            amount={totalPrice * 100}
+          >
+            <button className="w-full bg-[#0C1844] hover:scale-105 rounded-md px-2">
+              Checkout
+            </button>
+          </StripeCheckout>
         </div>
       </div>
     </div>
